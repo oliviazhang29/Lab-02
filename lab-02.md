@@ -121,9 +121,11 @@ ggplot(
 
 ![](lab-02_files/figure-gfm/plastic-waste-density-1.png)<!-- -->
 
-Explain why we defined the color and fill of the curves by mapping
-aesthetics of the plot but we defined the alpha level as a
-characteristic of the plotting geom.
+We define the color and fill of the curves by mapping aesthetics of the
+plot because it would give us legends regarding which color/fill
+represents which group, while there would be no legend for
+characteristics that are mapped in the plotting geom, like in the case
+of the alpha level.
 
 ### Exercise 3
 
@@ -143,33 +145,118 @@ ggplot(
 
 ![](lab-02_files/figure-gfm/side-by-side%20box-plots-1.png)<!-- -->
 
-Convert your side-by-side box plots from the previous task to violin
-plots. What do the violin plots reveal that box plots do not? What
-features are apparent in the box plots but not in the violin plots?
+Now convert the side-by-side box plots from the previous task to violin
+plots.
 
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = continent,
+    y = plastic_waste_per_cap
+  )
+) +
+  geom_violin()
 ```
+
+    ## Warning: Removed 51 rows containing non-finite outside the scale range
+    ## (`stat_ydensity()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-violin-1.png)<!-- -->
+
+The violin plots show the distributions of plastic waste per capita for
+different continents, while the side-by-side box plots clearly tells us
+about the means, quartiles, and outliers of plastic waste for different
+continents, allowing straightforward comparisons of descriptive
+statistics.
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+The relationship between plastic waste per capita and mismanaged plastic
+waste per capita using a scatterplot is visualized below:
 
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    y = mismanaged_plastic_waste_per_cap
+  )
+) +
+  geom_point()
 ```
 
-``` r
-# insert code here
-```
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-1.png)<!-- -->
+
+As you can see here, the more the plastic waste per capita, the more
+mismanaged plastic waste per capita. The trend going up is pretty steep,
+which means that the positive correlation between the plastic waste per
+capita and the more mismanaged plastic waste per capita is pretty
+strong. However, there are also some variations of the trend, which
+could represent data coming from different continents where the
+strategies solving plastic waste is different, some more effective and
+others not. And of course, there is one outlier.
 
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    y = mismanaged_plastic_waste_per_cap, 
+    color = continent
+  )
+) +
+  geom_point()
 ```
 
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-continent-1.png)<!-- -->
+
+The color scatterplot reveals more information about how plastic waste
+per capita and mismanaged plastic waste per capita are associated with
+respect different continents. Africa seems to be the most inefficient
+plastic waster handler. Europe and some Asian countries seems to be very
+efficient in handling plastic waster, while others, North America, and
+South America are somewhere in the middle.
+
 ``` r
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = total_pop,
+    y = plastic_waste_per_cap, 
+    color = continent
+  )
+) +
+  geom_point()
 ```
+
+    ## Warning: Removed 61 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-total-1.png)<!-- -->
+
+``` r
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = coastal_pop,
+    y = plastic_waste_per_cap, 
+    color = continent
+  )
+) +
+  geom_point()
+```
+
+    ## Warning: Removed 51 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
 
 ### Exercise 5
 

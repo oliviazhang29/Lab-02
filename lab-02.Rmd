@@ -102,30 +102,74 @@ ggplot(
   geom_boxplot()
 ```
 
-Convert your side-by-side box plots from the previous task to violin plots. What do the violin plots reveal that box plots do not? What features are apparent in the box plots but not in the violin plots?
+Now convert the side-by-side box plots from the previous task to violin plots. 
 
 ```{r plastic-waste-violin}
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = continent,
+    y = plastic_waste_per_cap
+  )
+) +
+  geom_violin()
 ```
+
+The violin plots show the distributions of plastic waste per capita for different continents, while the side-by-side box plots clearly tells us about the means, quartiles, and outliers of plastic waste for different continents, allowing straightforward comparisons of descriptive statistics. 
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+The relationship between plastic waste per capita and mismanaged plastic waste per capita using a scatterplot is visualized below:
 
 ```{r plastic-waste-mismanaged}
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    y = mismanaged_plastic_waste_per_cap
+  )
+) +
+  geom_point()
 ```
+
+As you can see here, the more the plastic waste per capita, the more mismanaged plastic waste per capita. The trend going up is pretty steep, which means that the positive correlation between the plastic waste per capita and the more mismanaged plastic waste per capita is pretty strong. However, there are also some variations of the trend, which could represent data coming from different continents where the strategies solving plastic waste is different, some more effective and others not. And of course, there is one outlier.
 
 ```{r plastic-waste-mismanaged-continent}
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = plastic_waste_per_cap,
+    y = mismanaged_plastic_waste_per_cap, 
+    color = continent
+  )
+) +
+  geom_point()
 ```
 
+The color scatterplot reveals more information about how plastic waste per capita and mismanaged plastic waste per capita are associated with respect different continents. Africa seems to be the most inefficient plastic waster handler. Europe and some Asian countries seems to be very efficient in handling plastic waster, while others, North America, and South America are somewhere in the middle.
+
 ```{r plastic-waste-population-total}
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = total_pop,
+    y = plastic_waste_per_cap, 
+    color = continent
+  )
+) +
+  geom_point()
 ```
 
 ```{r plastic-waste-population-coastal}
-# insert code here
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = coastal_pop,
+    y = plastic_waste_per_cap, 
+    color = continent
+  )
+) +
+  geom_point()
 ```
 
 ### Exercise 5
