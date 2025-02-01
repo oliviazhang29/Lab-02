@@ -258,10 +258,40 @@ ggplot(
 
 ![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
 
+plastic waste per capita seems to be a little bit more linear related to
+the coastal population than the total population, but only by a function
+of a few Asian countries.
+
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+The relationship between the proportion of coastal population and
+plastic waste per capita:
 
 ``` r
-# insert code here
+plastic_waste$coastal_pop_por = plastic_waste$coastal_pop / plastic_waste$total_pop
+
+ggplot(plastic_waste %>% filter(plastic_waste_per_cap < 3),
+  mapping = aes(
+    x = coastal_pop_por,
+    y = plastic_waste_per_cap, 
+    color = continent
+  )
+) +
+  geom_point()+
+  labs(title = "Plastic waste vs. coastal population proportion", 
+       subtitle = "by continent", 
+       x = "Coastal population proportion (Coastal / total population)", 
+       y = "Plastic waster per capita") +
+  scale_color_viridis_d() +
+  geom_smooth(color = 1)
 ```
+
+    ## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+
+    ## Warning: Removed 10 rows containing non-finite outside the scale range
+    ## (`stat_smooth()`).
+
+    ## Warning: Removed 10 rows containing missing values or values outside the scale range
+    ## (`geom_point()`).
+
+![](lab-02_files/figure-gfm/recreate-viz-1.png)<!-- -->
