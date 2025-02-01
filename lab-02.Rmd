@@ -87,11 +87,22 @@ ggplot(
   geom_density(alpha = 0.2)
 ```
 
-Explain why we defined the color and fill of the curves by mapping aesthetics of the plot but we defined the alpha level as a characteristic of the plotting geom.
+We define the color and fill of the curves by mapping aesthetics of the plot because it would give us legends regarding which color/fill represents which group, while there would be no legend for characteristics that are mapped in the plotting geom, like in the case of the alpha level.
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+```{r side-by-side box-plots}
+ggplot(
+  data = plastic_waste,
+  mapping = aes(
+    x = continent,
+    y = plastic_waste_per_cap
+  )
+) +
+  geom_boxplot()
+```
+
+Convert your side-by-side box plots from the previous task to violin plots. What do the violin plots reveal that box plots do not? What features are apparent in the box plots but not in the violin plots?
 
 ```{r plastic-waste-violin}
 # insert code here
